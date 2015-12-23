@@ -1,0 +1,295 @@
+
+/*
+ * DriveTech CSS Framework
+ * Version 0.0.1
+ */
+
+@charset "UTF-8";
+
+/* font */
+@font-face { font-family:'supermarket';src:url('../fonts/supermarket-webfont.eot?v=3.0.21');src:url('../fonts/supermarket-webfont.eot?#iefix&v=3.0.21') format('embedded-opentype'),url('../fonts/supermarket-webfont.woff?v=3.0.21')format('woff'),url('../fonts/supermarket-webfont.ttf?v=3.0.21')format('truetype'),url('../fonts/supermarket-webfont.svg?v=3.0.21#supermarketregular')format('svg');font-weight:normal;font-style:normal;}
+@font-face { font-family:'angsanaupc';src:url('../fonts/AngsanaUPC.eot?v3.0.21');src:url('../fonts/AngsanaUPC.eot?#iefix&v3.0.21')format('embedded-opentype'),url('../fonts/AngsanaUPC.woff?v3.0.21')format('woff'),url('../fonts/AngsanaUPC.ttf?v3.0.21')format('truetype'),url('../fonts/AngsanaUPC.svg?v=3.0.21#th_baijamregular')format('svg');font-weight:normal;font-style:normal; }
+@font-face { font-family:'baijamregular';src:url('../fonts/th_baijam-webfont.eot?v3.0.21');src:url('../fonts/th_baijam-webfont.eot?#iefix&v3.0.21')format('embedded-opentype'),url('../fonts/th_baijam-webfont.woff?v3.0.21')format('woff'),url('../fonts/th_baijam-webfont.ttf?v3.0.21')format('truetype'),url('../fonts/th_baijam-webfont.svg?v=3.0.21#th_baijamregular')format('svg');font-weight:normal;font-style:normal; }
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1;margin:0;padding:0;overflow-x:hidden;overflow-y:auto;}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* css reset by custom */
+* { -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
+body { font-size:16px; }
+
+/* ScrollBar */
+::-webkit-scrollbar { width:8px;height:5px; }
+::-webkit-scrollbar-track { -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3);-webkit-border-radius:10px;border-radius:10px; }
+::-webkit-scrollbar-thumb { -webkit-border-radius:10px;border-radius:10px;background:#2ECC71;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5); }
+::-webkit-scrollbar-thumb:window-inactive { background-color:#2ECC71; }
+
+/** 
+ * Width Size (max width : 1280px)
+ * 1280.00px   = 100.0000000%   = 12
+ * 1173.26px   =  91.6609375%   = 11
+ * 1066.60px   =  83.3281250%   = 10
+ *  959.94px   =  74.9953125%   =  9
+ *  853.28px   =  66.6625000%   =  8
+ *  746.62px   =  58.3296875%   =  7
+ *  639.96px   =  49.9968750%   =  6
+ *  533.30px   =  41.6640625%   =  5
+ *  426.64px   =  33.3312500%   =  4
+ *  319.98px   =  24.9984375%   =  3
+ *  213.32px   =  16.6656250%   =  2
+ *  106.66px   =   8.3328125%   =  1
+ *    0.00px   =           0%   =  0
+ **/
+
+/* =============================================
+ * containe fluid & containe
+ * ============================================= */
+
+.container-fluid, .container { position:relative;clear:both; }
+.container-fluid { width:100%; }
+.container { margin:0 auto;width:100%;max-width:1280px; }
+
+/* =============================================
+ * row & column
+ * ============================================= */
+
+.row { width:100%;display:block;clear:both; }
+.clear { padding:0;margin:0;clear:both; }
+
+.col-12       {   width:  100.0000000%;   }
+.col-11       {   width:   91.6609375%;   }
+.col-10       {   width:   83.3281250%;   }
+.col-9        {   width:   74.9953125%;   }
+.col-8        {   width:   66.6625000%;   }
+.col-7        {   width:   58.3296875%;   }
+.col-6        {   width:   49.9968750%;   }
+.col-5        {   width:   41.6640625%;   }
+.col-4        {   width:   33.3312500%;   }
+.col-3        {   width:   24.9984375%;   }
+.col-2        {   width:   16.6656250%;   }
+.col-1        {   width:    8.3328125%;   } 
+
+.col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { float:left;padding:0;margin:0; }
+
+/* max-width: 768px */
+@media only screen and (max-width: 768px) {
+    .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { width:100%;clear:both; }
+}
+
+/* max-width 1280px */
+@media only screen and (min-width: 1280px) {
+    .container { padding:0 10px; }
+}
+
+/* ระยะห่างนับจากด้าน ขวา */
+.col-left-12  {   margin-left:   100.0000000%;   }
+.col-left-11  {   margin-left:    91.6609375%;   }
+.col-left-10  {   margin-left:    83.3281250%;   }
+.col-left-9   {   margin-left:    74.9953125%;   }
+.col-left-8   {   margin-left:    66.6625000%;   }
+.col-left-7   {   margin-left:    58.3296875%;   }
+.col-left-6   {   margin-left:    49.9968750%;   }
+.col-left-5   {   margin-left:    41.6640625%;   }
+.col-left-4   {   margin-left:    33.3312500%;   }
+.col-left-3   {   margin-left:    24.9984375%;   }
+.col-left-2   {   margin-left:    16.6656250%;   }
+.col-left-1   {   margin-left:     8.3328125%;   }
+
+/* ระยะห่างนับจากด้าน ซ้าย */
+.col-right-12 {   margin-right:  100.0000000%;   }
+.col-right-11 {   margin-right:   91.6609375%;   }
+.col-right-10 {   margin-right:   83.3281250%;   }
+.col-right-9  {   margin-right:   74.9953125%;   }
+.col-right-8  {   margin-right:   66.6625000%;   }
+.col-right-7  {   margin-right:   58.3296875%;   }
+.col-right-6  {   margin-right:   49.9968750%;   }
+.col-right-5  {   margin-right:   41.6640625%;   }
+.col-right-4  {   margin-right:   33.3312500%;   }
+.col-right-3  {   margin-right:   24.9984375%;   }
+.col-right-2  {   margin-right:   16.6656250%;   }
+.col-right-1  {   margin-right:    8.3328125%;   }
+
+/* =============================================
+ * margin 
+ * ============================================= */
+
+.margin-5   {  margin:  5px;  }
+.margin-10  {  margin: 10px;  }
+.margin-15  {  margin: 15px;  }
+.margin-20  {  margin: 20px;  }
+.margin-25  {  margin: 25px;  }
+.margin-30  {  margin: 30px;  }
+.margin-35  {  margin: 35px;  }
+.margin-40  {  margin: 40px;  }
+.margin-45  {  margin: 45px;  }
+.margin-50  {  margin: 50px;  }
+
+/* =============================================
+ * padding
+ * ============================================= */
+
+.padding-5   {  padding:  5px;  }
+.padding-10  {  padding: 10px;  }
+.padding-15  {  padding: 15px;  }
+.padding-20  {  padding: 20px;  }
+.padding-25  {  padding: 25px;  }
+.padding-30  {  padding: 30px;  }
+.padding-35  {  padding: 35px;  }
+.padding-40  {  padding: 40px;  }
+.padding-45  {  padding: 45px;  }
+.padding-50  {  padding: 50px;  }
+
+/* =============================================
+ * position top & bottom
+ * ============================================= */
+
+.top-5  {   margin-top: 5px;  }
+.top-10 {   margin-top: 10px; }
+.top-15 {   margin-top: 15px; }
+.top-20 {   margin-top: 20px; }
+.top-25 {   margin-top: 25px; }
+.top-30 {   margin-top: 30px; }
+.top-35 {   margin-top: 35px; }
+.top-40 {   margin-top: 40px; }
+.top-45 {   margin-top: 45px; }
+.top-50 {   margin-top: 50px; }
+
+.bottom-5  {   margin-bottom: 5px;  }
+.bottom-10 {   margin-bottom: 10px; }
+.bottom-15 {   margin-bottom: 15px; }
+.bottom-20 {   margin-bottom: 20px; }
+.bottom-25 {   margin-bottom: 25px; }
+.bottom-30 {   margin-bottom: 30px; }
+.bottom-35 {   margin-bottom: 35px; }
+.bottom-40 {   margin-bottom: 40px; }
+.bottom-45 {   margin-bottom: 45px; }
+.bottom-50 {   margin-bottom: 50px; }
+
+/* =============================================
+ * display 
+ * ============================================= */
+
+.display-none            {  display: none;         }    /* ปิดการแสดงผล */
+.display-block           {  display: block;        }
+.display-left            {  display: inline;       }
+.display-left-block      {  display: inline-block; }
+.display-table           {  display: table;        }
+.display-left-table      {  display: inline-table; }
+.display-list            {  display: list-item;    }
+
+/* =============================================
+ * font 
+ * ============================================= */
+
+.font-supermarket    {   font-family: "supermarket", sans-serif;        }
+.font-baijamregular  {   font-family: "baijamregular", sans-serif;      }
+.font-angsana        {   font-family: "angsanaupc", sans-serif;         }
+.font-nunito         {   font-family: "Nunito", sans-serif;             }
+.font-tahoma         {   font-family: tahoma, sans-serif;               }
+.font-sans-serif     {   font-family: sans-serif;                       }
+
+/* font size */
+.font-5     {   font-size: 0.5em; /*  8px */ }
+.font-10    {   font-size: 1.0em; /* 16px */ }
+.font-15    {   font-size: 1.5em; /* 24px */ }
+.font-20    {   font-size: 2.0em; /* 32px */ }
+.font-25    {   font-size: 2.5em; /* 40px */ }
+.font-30    {   font-size: 3.0em; /* 48px */ }
+.font-35    {   font-size: 3.5em; /* 56px */ }
+.font-40    {   font-size: 4.0em; /* 64px */ }
+.font-45    {   font-size: 4.5em; /* 72px */ }
+.font-50    {   font-size: 5.0em; /* 80px */ }
+
+/* text align */
+.text-left       {       text-align: left;          }
+.text-right      {       text-align: right;         }
+.text-center     {       text-align: center;        }
+.text-full       {       text-align: justify;       }
+.text-nowrap     {      white-space: nowrap;        }
+.text-low        {   text-transform: lowercase;     } /* พิมพ์เล็กทั้งหมด */
+.text-up         {   text-transform: uppercase;     } /* พิมพ์ใหญ่ทั้งหมด */
+.text-first-up   {   text-transform: capitalize;    } /* คำขึ้นต้นเป็นตัวพิมพ์ใหญ่ */
+
+/* =============================================
+ * color 
+ * ============================================= */
+
+/* background */
+.bg-green-sea      {   background-color: #16A085;  }
+.bg-turouoise      {   background-color: #1ABC9C;  }
+.bg-emerland       {   background-color: #2ECC71;  }
+.bg-nephritis      {   background-color: #27AE60;  }
+.bg-pink           {   background-color: #E91E63;  }
+.bg-dark-pink      {   background-color: #C2185B;  }
+.bg-amethyst       {   background-color: #9B59B6;  }
+.bg-wisteria       {   background-color: #8E44AD;  }
+.bg-clouds         {   background-color: #ECF0F1;  }
+.bg-white          {   background-color: #FFFFFF;  }
+.bg-black          {   background-color: #212121;  }
+
+.bg-orange         {   background-color: #F39C12;  }
+.bg-rss            {   background-color: #F26522;  }
+.bg-sun-flower     {   background-color: #F1C40F;  }
+.bg-carrot         {   background-color: #E67E22;  }
+.bg-googleplus     {   background-color: #DB4437;  }
+.bg-pomegranate    {   background-color: #C0392B;  }
+.bg-red            {   background-color: #F44336;  }
+.bg-dark-red       {   background-color: #D32F2F;  }
+
+.bg-light-blue     {   background-color: #03A9F4;  }
+.bg-blue           {   background-color: #2196F3;  }
+.bg-skype          {   background-color: #00AFF0;  }
+.bg-belize-hole    {   background-color: #2980B9;  }
+.bg-facebook       {   background-color: #3B5998;  }
+.bg-midnight-blue  {   background-color: #2C3E50;  }
+.bg-wet-asphalt    {   background-color: #34495E;  }
+.bg-concrete       {   background-color: #95A5A6;  }
+.bg-asbestos       {   background-color: #7F8C8D;  }
+.bg-silver         {   background-color: #BDC3C7;  }
+
+.bg-success        {   background-color: #2ECC71;  }
+.bg-warning        {   background-color: #F39C12;  }
+.bg-info           {   background-color: #03A9F4;  }
+.bg-error          {   background-color: #F44336;  }
+
+.color-green-sea      {   color: #16A085;  }
+.color-turouoise      {   color: #1ABC9C;  }
+.color-emerland       {   color: #2ECC71;  }
+.color-nephritis      {   color: #27AE60;  }
+.color-pink           {   color: #E91E63;  }
+.color-dark-pink      {   color: #C2185B;  }
+.color-amethyst       {   color: #9B59B6;  }
+.color-wisteria       {   color: #8E44AD;  }
+.color-clouds         {   color: #ECF0F1;  }
+.color-white          {   color: #FFFFFF;  }
+.color-black          {   color: #212121;  }
+
+.color-orange         {   color: #F39C12;  }
+.color-rss            {   color: #F26522;  }
+.color-sun-flower     {   color: #F1C40F;  }
+.color-carrot         {   color: #E67E22;  }
+.color-googleplus     {   color: #DB4437;  }
+.color-pomegranate    {   color: #C0392B;  }
+.color-red            {   color: #F44336;  }
+.color-dark-red       {   color: #D32F2F;  }
+
+.color-light-blue     {   color: #03A9F4;  }
+.color-blue           {   color: #2196F3;  }
+.color-skype          {   color: #00AFF0;  }
+.color-belize-hole    {   color: #2980B9;  }
+.color-facebook       {   color: #3B5998;  }
+.color-midnight-blue  {   color: #2C3E50;  }
+.color-wet-asphalt    {   color: #34495E;  }
+.color-concrete       {   color: #95A5A6;  }
+.color-asbestos       {   color: #7F8C8D;  }
+.color-silver         {   color: #BDC3C7;  }
+
+.color-success        {   color: #2ECC71;  }
+.color-warning        {   color: #F39C12;  }
+.color-info           {   color: #03A9F4;  }
+.color-error          {   color: #F44336;  }
