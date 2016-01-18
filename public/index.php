@@ -13,7 +13,7 @@ class Application extends WebApplication {
     
     // ทำงานอัตโนมัติ
     public function __construct() {
-        $this->config = new ConfigIni(APPLICATION_PATH . '/config/main.ini');   // Read the configuration
+        $this->config = new ConfigIni(APPLICATION_PATH . '/common/config/main.ini');   // Read the configuration
     }   
     
     /* ลงทะเบียน (Register Services)*/
@@ -27,23 +27,14 @@ class Application extends WebApplication {
         $this->setDI($manager);
     }
     
-    private function redirect($open = true){
-        if(empty($open)){
-            echo '<META HTTP-EQUIV="Refresh" CONTENT="0;URL=http://drivesoftcenter.net/">';
-            exit();
-        }
-    }
-    
     /* แสดงเว็บแอพพลิเคชั่น (Run Web Application) */
     public function run() {
         try { 
             $this->_registerServices(); 
             echo $this->handle()->getContent();
         } catch(\Phalcon\Exception $e) {
-            $this->redirect(DevMode);
             echo 'PhalconException: ' . $e->getMessage();
         } catch (\Exception $e) {
-            $this->redirect(DevMode);
             echo 'PhpException: ' . $e->getMessage();
         }
     }
@@ -58,8 +49,6 @@ class Application extends WebApplication {
 if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', dirname(dirname(__FILE__)));
     define('APPLICATION_PATH', ROOT_PATH . '/application');
-    define('IMAGE_PATH', ROOT_PATH . '/public/images');
-    define('THEME_PATH', ROOT_PATH . '/public/themes');
 }
 
 define('Phalcon_Debug', true);  // ต้องการแสดง Debug หรือไม่ (true,false)
