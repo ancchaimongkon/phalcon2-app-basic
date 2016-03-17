@@ -1,0 +1,21 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+@import '../vars/_color';
+
+/* =============================================
+ * Link
+ * ============================================= */
+
+a { 
+    text-decoration: none; 
+    transition: color 200ms;
+    cursor: pointer;
+}
+
+a:hover { 
+    color: $color-orange;
+}

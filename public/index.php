@@ -1,30 +1,42 @@
 <?php
 
-error_reporting(E_ALL);
+define('Dev_Mode', true);  // ต้องการแสดง Debug หรือไม่ (true,false)
+define('Phalcon_Debug', true);  // ต้องการแสดง Debug หรือไม่ (true,false)
+
+if (Dev_Mode){
+    error_reporting(-1);
+    ini_set('display_errors', 1);
+} else {
+    error_reporting(0); 
+    ini_set('display_errors','On');
+}
+
 date_default_timezone_set('Asia/Bangkok');
 
 use Phalcon\Mvc\Application as WebApplication,
     Phalcon\DI\FactoryDefault as ApplicationManager,
-    Phalcon\Config\Adapter\Ini as ConfigIni;
+    Phalcon\Config\Adapter\Ini as ConfigIni,
+    Phalcon\Debug as ModeDebug;
 
 class Application extends WebApplication {
     
-    private $config;        // การตั้งค่า Config | by Object Array
+    private $config; // การตั้งค่า Config | by Object Array
+    private $manager;
     
     // ทำงานอัตโนมัติ
     public function __construct() {
-        $this->config = new ConfigIni(APPLICATION_PATH . '/common/config/main.ini');   // Read the configuration
-    }   
+        $this->config = new ConfigIni(APPLICATION_PATH . '/config/main.ini');   // Read the configuration
+    }
     
     /* ลงทะเบียน (Register Services)*/
     private function _registerServices(){
-        $debug = new \Phalcon\Debug();
+        $debug = new ModeDebug();
         $debug->listen(Phalcon_Debug);
-        $manager = new ApplicationManager();
-        include_once APPLICATION_PATH . '/autoloader.php';     // Read auto-loader
-        include_once APPLICATION_PATH . '/routers.php';         // Read Router
-        include_once APPLICATION_PATH . '/services.php';        // Read services
-        $this->setDI($manager);
+        $this->manager = new ApplicationManager();
+        $this->include_file('autoloader.php');      // Autoload Service
+        $this->include_file('routers.php');         // Read Router
+        $this->include_file('services.php');        // Read services
+        $this->setDI($this->manager);
     }
     
     /* แสดงเว็บแอพพลิเคชั่น (Run Web Application) */
@@ -33,10 +45,21 @@ class Application extends WebApplication {
             $this->_registerServices(); 
             echo $this->handle()->getContent();
         } catch(\Phalcon\Exception $e) {
-            echo 'PhalconException: ' . $e->getMessage();
+            echo 'PhalconException: ' . $e->getMessage(); exit();
         } catch (\Exception $e) {
-            echo 'PhpException: ' . $e->getMessage();
+            echo 'PhpException: ' . $e->getMessage(); exit();
         }
+    }
+    
+    /* ตรวจสอบไฟล์ */
+    public function include_file($file = null){
+        $pathFile = sprintf('%s/%s', APPLICATION_PATH, $file);
+        if (!empty($pathFile) && file_exists($pathFile)){
+            $manager = $this->manager;
+            include_once $pathFile;
+            $this->manager = $manager;
+        }
+        return false;
     }
     
 }
@@ -49,10 +72,8 @@ class Application extends WebApplication {
 if (!defined('ROOT_PATH')) {
     define('ROOT_PATH', dirname(dirname(__FILE__)));
     define('APPLICATION_PATH', ROOT_PATH . '/application');
+    define('IMAGE_PATH', ROOT_PATH . '/public/images');
 }
-
-define('Phalcon_Debug', true);  // ต้องการแสดง Debug หรือไม่ (true,false)
-define('DevMode', true);        // อยู่ในโหมดพัฒนา หรือไม่ (true,false)
 
 /* ==================================================
  * ลงทะเบียนและแสดงเว็บแอพพลิดเคชั่นยน Web Browser

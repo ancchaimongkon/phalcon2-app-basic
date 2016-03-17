@@ -1,0 +1,66 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+@import '../vars/_column';
+
+/* =============================================
+ * Column
+ * ============================================= */
+
+.col-12 { width: $col-12; }
+.col-11 { width: $col-11; }
+.col-10 { width: $col-10; }
+.col-9  { width:  $col-9; }
+.col-8  { width:  $col-8; }
+.col-7  { width:  $col-7; }
+.col-6  { width:  $col-6; }
+.col-5  { width:  $col-5; }
+.col-4  { width:  $col-4; }
+.col-3  { width:  $col-3; }
+.col-2  { width:  $col-2; }
+.col-1  { width:  $col-1; } 
+
+.col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { 
+    padding: 0;
+    margin: 0; 
+    float: left;
+}
+
+/* max-width: 768px */
+@media only screen and (max-width: $min-width) {
+    .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 { 
+        width: 100%;
+        clear: both; 
+    }
+}
+
+/* margin-left */
+.col-left-12 { margin-left: $col-12; }
+.col-left-11 { margin-left: $col-11; }
+.col-left-10 { margin-left: $col-10; }
+.col-left-9  { margin-left:  $col-9; }
+.col-left-8  { margin-left:  $col-8; }
+.col-left-7  { margin-left:  $col-7; }
+.col-left-6  { margin-left:  $col-6; }
+.col-left-5  { margin-left:  $col-5; }
+.col-left-4  { margin-left:  $col-4; }
+.col-left-3  { margin-left:  $col-3; }
+.col-left-2  { margin-left:  $col-2; }
+.col-left-1  { margin-left:  $col-1; }
+
+/* margin-right */
+.col-right-12 { margin-right: $col-12; }
+.col-right-11 { margin-right: $col-11; }
+.col-right-10 { margin-right: $col-10; }
+.col-right-9  { margin-right:  $col-9; }
+.col-right-8  { margin-right:  $col-8; }
+.col-right-7  { margin-right:  $col-7; }
+.col-right-6  { margin-right:  $col-6; }
+.col-right-5  { margin-right:  $col-5; }
+.col-right-4  { margin-right:  $col-4; }
+.col-right-3  { margin-right:  $col-3; }
+.col-right-2  { margin-right:  $col-2; }
+.col-right-1  { margin-right:  $col-1; }

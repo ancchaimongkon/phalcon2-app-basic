@@ -1,0 +1,18 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+
+/* =============================================
+ * display 
+ * ============================================= */
+
+.display-none        { display: none; }
+.display-block       { display: block; }
+.display-left        { display: inline; }
+.display-left-block  { display: inline-block; }
+.display-table       { display: table; }
+.display-left-table  { display: inline-table; }
+.display-list        { display: list-item; }

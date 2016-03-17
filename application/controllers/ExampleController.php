@@ -6,9 +6,6 @@ class ExampleController extends CController {
         parent::initialize();
     }
     
-    public function indexAction(){
-
-    }
+    public function indexAction(){}
 
 }
-

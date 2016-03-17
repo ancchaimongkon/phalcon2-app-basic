@@ -1,134 +1,83 @@
 <?php
 
+/* 
+ * HTML Library v1.0.0
+ * Updated : 2016-03-17 21:48
+ * -------------------------------------------------------------
+ * Eakkabin Jaikeawma <eakkabin@drivesoft.co>
+ * Website : https://drivesoft.co/
+ * -------------------------------------------------------------
+ */
+
 use Phalcon\Mvc\User\Component;
-use Phalcon\Tag;
 use CBaseSystem as System;
 
 class HTML extends Component {
     
-    public static function image ($path, $mode = true, $htmlOptions = array()) {
+    private static $cacheVersion = '1.0.0';
+
+    public static function image ($path, $htmlOptions = ['alt' => 'images']) {
         $pathImage = IMAGE_PATH . '/' . $path;
-        if(file_exists($pathImage)){
-            if(!empty($mode)){
-                list($width, $height) = getimagesize($pathImage); // พบไฟล์
-                $htmlOption = array_merge($htmlOptions,array('width' => $width, 'height' => $height, 'alt' => 'example'));
-            }else{
-                $htmlOption = $htmlOptions;
-            }
-            if(!empty($htmlOption)){
-                return '<img src="/images/' . $path . self::getFileCache() . '"' . self::tagOptions($htmlOption) . ' />';
-            }else{
-                if(!empty($mode)){
-                    return Tag::image(array('/images/' . $path . self::getFileCache(), false, 'width' => $width, 'height' => $height, 'alt' => 'example'));
-                }else{
-                    return Tag::image(array('/images/' . $path . self::getFileCache(), false, 'alt' => 'example'));
-                }
-            }
-        }else{
+        if (file_exists($pathImage) && !is_dir($pathImage)) {
+            list($width, $height) = getimagesize($pathImage); // พบไฟล์
+            $htmlOption = array_merge(['width' => $width, 'height' => $height], $htmlOptions);
+            return HTML::tag('img', System::$urlImage . $path . HTML::getFileCache(), $htmlOption);
+        } else {
             return self::imageDefault($htmlOptions); // ไม่พบไฟล์
         }
     } 
-    public static function imageUrl ($path, $mode = true) {
+    public static function imageUrl ($path) {
         $pathImage = IMAGE_PATH . '/' . $path;
-        if(file_exists($pathImage)){
-            if(!empty($mode)){
-                return System::$baseUrl . '/images/' . $path . self::getFileCache();
-            }else{
-                return '/images/' . $path . self::getFileCache();
-            }
+        if (file_exists($pathImage) && !is_dir($pathImage)) {
+            return System::$urlImage . $path . HTML::getFileCache();
         } else {
             return self::imageUrlDefault(); // ไม่พบไฟล์
         }
     }
-    public static function imageDefault ($htmlOptions = array(),$mode = true) {
+    public static function imageDefault ($htmlOptions = ['alt' => 'images']) {
         $pathImage = IMAGE_PATH . '/default.png';
-        if(!empty($mode)){
+        if (file_exists($pathImage) && !is_dir($pathImage)) {
             list($width, $height) = getimagesize($pathImage); // พบไฟล์
-            $htmlOption = array_merge($htmlOptions,array('width'=>$width,'height'=>$height, 'alt' => 'example'));
-        }else{
-            $htmlOption = $htmlOptions;
-        }
-        if(!empty($htmlOption)){
-            return '<img src="' . System::$baseUrl . '/images/default.png' . self::getFileCache() . '"'. self::tagOptions($htmlOption) . ' />';
-        }else{
-            if(!empty($mode)){
-                return Tag::image(array('/images/default.png' . self::getFileCache(), false, 'width' => $width, 'height' => $height, 'alt' => 'example'));
-            }else{
-                return Tag::image(array('/images/default.png' . self::getFileCache(), false, 'alt' => 'example'));
-            }
+            $htmlOption = array_merge(['width' => $width, 'height' => $height], $htmlOptions);
+            return HTML::tag('img', System::$urlImage . 'default.png' . HTML::getFileCache(), $htmlOption);
         }
     }
-    public static function imageUrlDefault ($mode = true) {
+    public static function imageUrlDefault () {
         $pathImage = IMAGE_PATH . '/default.png';
-        if(file_exists($pathImage)){
-            if(!empty($mode)){
-                return System::$baseUrl . '/images/default.png' . self::getFileCache();
-            }else{
-                return '/images/default.png' . self::getFileCache();
-            }
+        if(file_exists($pathImage) && !is_dir($pathImage)){
+            list($width, $height) = getimagesize($pathImage); // พบไฟล์
+            return HTML::tag('img', System::$urlImage . 'default.png' . HTML::getFileCache(), ['width' => $width, 'height' => $height]);
         }
     }
     public static function getFileCache(){
-        return '?v=' . System::$version;
+        if (!empty(System::$version)){
+            return '?v=' . System::$version;
+        } else {
+            return '?v=' . HTML::$cacheVersion;
+        }
     }
 
-    public static function tag ($tag = null, $content = null, $htmlOptions = array()) {
-        if (!empty($tag) && !empty($content)) {
-            if(empty($htmlOptions)){
-                $html = "<{$tag}>";
-            }else{
-                $html = "<{$tag}" . self::tagOptions($htmlOptions) . ">";
+    public static function tag ($tag = null, $content = null, $htmlOptions = []) {
+        if (!empty($tag)) {
+            if ($tag == 'img' || $tag == 'input') {
+                return sprintf('<%s src="%s" %s />', $tag, $content, HTML::tagOptions($htmlOptions));
+            } else {
+                return sprintf('<%s %s>%s</%s>', $tag, HTML::tagOptions($htmlOptions), $content, $tag);
             }
-            return "{$html}{$content}</{$tag}>";
         } else {
             return false;
         }
     }
-    public static function tagOptions ($htmlOptions = array()) {
+    public static function tagOptions ($htmlOptions = []) {
         if(!empty($htmlOptions)){
-            $attribute = "";
-            foreach ($htmlOptions as $key => $value) {
+            $attribute = '';
+            foreach ($htmlOptions as $property => $value) {
                 if(!empty($value)){
-                    $attribute .= " {$key}=\"{$value}\"";
+                    $attribute .= sprintf(' %s="%s"', $property, $value);
                 }
             }
             return $attribute;
         }
-    }
-    
-    public static function serachLink($content = null, $htmlOptions = array()){
-        if(!empty($content)){
-            $linkTag = self::serachLinkSytex($content);
-            if(!empty($linkTag)){
-                if(!empty($htmlOptions)){
-                    $replace = self::tag('a',trim($linkTag['text']),array_merge(array('href'=>$linkTag['link'],'target'=>'_blank'),$htmlOptions));
-                }else{
-                    $replace = self::tag('a',trim($linkTag['text']),array('href'=>$linkTag['link'],'target'=>'_blank'));
-                }
-                $html = str_replace($linkTag['search'], $replace, $content);
-                unset($linkTag); unset($replace); unset($content);
-                if(!empty(self::serachLinkSytex($html))){
-                    return self::serachLink($html,$htmlOptions);
-                } else { unset($content); return $html; }
-            } else { return $content; }
-        }
-    }
-    private static function serachLinkSytex($content = null){
-        $start = strpos($content,'[');                  // ค้นหาตำแหน่งของ "["
-        $end = strpos($content,']');                  // ค้นหาตำแหน่งของ "]"
-        $and = strpos($content,'||');                 // ค้นหาตำแหน่งของ "|"
-        if (!empty($start) && !empty($end) && !empty($and)) {
-            $search = substr($content, $start, ($end - $start) + 1);
-            $link = substr($content, ($start + 1), ($and - $start) - 1);
-            $text = substr($content, ($and + 2), ($end - $and) - 2);
-            unset($start); unset($end); unset($and); unset($content);
-            return array('search' => $search ,'link' => $link, 'text' => $text);
-        }else if (!empty($start) && !empty($end) && empty($and)) {
-            $search = substr($content, $start, ($end - $start) + 1);
-            $link = substr($content, ($start + 1), ($end - $start) - 1);
-            unset($start); unset($end); unset($content);
-            return array('search' => $search,'link' => $link, 'text' => $link);
-        } else { unset($content); return false; }
     }
     
 }

@@ -1,0 +1,29 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+
+/* =============================================
+ * Container
+ * ============================================= */
+
+.container-fluid, .container { 
+    margin: 0; 
+    padding: 0;
+    width: 100%; 
+    position: relative;
+    clear: both; 
+}
+.container { 
+    margin: 0 auto;
+    max-width: $max-width;
+    display: block; 
+}
+
+@media only screen and (min-width: $max-width) {
+    .container { 
+        padding:0 10px; 
+    }
+}

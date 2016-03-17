@@ -1,0 +1,74 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+@import '../vars/_font';
+
+/* =============================================
+ * Include
+ * ============================================= */
+
+/* font */
+@font-face { font-family:'supermarket';
+    src:url('../../../../assets/cyber/fonts/super_market/supermarket.eot?v=1.0.0');
+    src:url('../../../../assets/cyber/fonts/super_market/supermarket.eot?#iefix&v=1.0.0') format('embedded-opentype'),
+        url('../../../../assets/cyber/fonts/super_market/supermarket.woff?v=1.0.0') format('woff'),
+        url('../../../../assets/cyber/fonts/super_market/supermarket.ttf?v=1.0.0') format('truetype'),
+        url('../../../../assets/cyber/fonts/super_market/supermarket.svg?v=1.0.0#supermarket') format('svg');
+    font-weight:normal;
+    font-style:normal;}
+@font-face { font-family:'angsanaupc';
+    src:url('../../../../assets/cyber/fonts/angsana_upc/angsana-upc.eot?v1.0.0');
+    src:url('../../../../assets/cyber/fonts/angsana_upc/angsana-upc.eot?#iefix&v1.0.0') format('embedded-opentype'),
+        url('../../../../assets/cyber/fonts/angsana_upc/angsana-upc.woff?v1.0.0') format('woff'),
+        url('../../../../assets/cyber/fonts/angsana_upc/angsana-upc.ttf?v1.0.0') format('truetype'),
+        url('../../../../assets/cyber/fonts/angsana_upc/angsana-upc.svg?v=1.0.0#angsanaupc') format('svg');
+    font-weight:normal;
+    font-style:normal; }
+@font-face { font-family:'baijam';
+    src:url('../../../../assets/cyber/fonts/th_baijam/th_baijam.eot.eot?v1.0.0');
+    src:url('../../../../assets/cyber/fonts/th_baijam/th_baijam.eot?#iefix&v1.0.0') format('embedded-opentype'),
+        url('../../../../assets/cyber/fonts/th_baijam/th_baijam.woff?v1.0.0') format('woff'),
+        url('../../../../assets/cyber/fonts/th_baijam/th_baijam.ttf?v1.0.0') format('truetype'),
+        url('../../../../assets/cyber/fonts/th_baijam/th_baijam.svg?v=1.0.0#baijam') format('svg');
+    font-weight:normal;
+    font-style:normal; }
+
+@font-face { font-family:'nunito';
+    src:url('../../../../assets/cyber/fonts/nunito/Nunito-300.woff2?v1.0.0') format('woff2');
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face { font-family:'nunito';
+    src:url('../../../../assets/cyber/fonts/nunito/Nunito-400.woff2?v1.0.0') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face { font-family:'nunito';
+    src:url('../../../../assets/cyber/fonts/nunito/Nunito-700.woff2?v1.0.0') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* =============================================
+ * Font
+ * ============================================= */
+
+.font-supermarket { font-family: $font-supermarket, $font-sans-serif; }
+.font-baijam      { font-family: $font-baijam, $font-sans-serif;      }
+.font-angsana     { font-family: $font-angsana, $font-sans-serif;     }
+.font-nunito      { font-family: $font-nunito, $font-sans-serif;      }
+.font-tahoma      { font-family: $font-tahoma, $font-sans-serif;      }
+.font-sans-serif  { font-family: $font-sans-serif;                    }
+
+/* text align */
+.text-left     { text-align: left; }
+.text-right    { text-align: right; }
+.text-center   { text-align: center; }
+.text-full     { text-align: justify; }
+.text-nowrap   { white-space: nowrap; }
+.text-low      { text-transform: lowercase; } /* font low */
+.text-up       { text-transform: uppercase; } /* font up */
+.text-first-up { text-transform: capitalize; } /* font first-up */

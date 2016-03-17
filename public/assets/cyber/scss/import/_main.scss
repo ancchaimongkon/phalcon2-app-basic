@@ -1,0 +1,19 @@
+
+/* =============================================
+ * Setting
+ * ============================================= */
+
+@import '../vars/_setting';
+
+/* =============================================
+ * Main 
+ * ============================================= */
+
+body {
+    font-size: $base-font-size;
+    background-color: $base-bg-color;
+    color: $base-font-color;
+    line-height: $base-line-height;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

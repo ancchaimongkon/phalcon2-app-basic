@@ -1,26 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title><?php echo !empty($pageTitle) ? $pageTitle . " | " : "" ?> <?php echo CBaseSystem::$pageTitle; ?></title>
-        <link rel="shortcut icon" href="/public/images/favicon-32x32.ico" type="image/x-icon">
-        <link rel="icon" href="/public/images/favicon-32x32.ico" type="image/x-icon">
+        <title><?php echo !empty($pageTitle) ? $pageTitle . " | " : "" ?> <?php echo \CBaseSystem::$pageTitle; ?></title>
+        <link rel="shortcut icon" href="{{ url('/images/favicon-32x32.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ url('/images/favicon-32x32.ico') }}" type="image/x-icon">
+        <base href="{{ url() }}" />
+        <script>var baseUrl = "{{ url() }}";</script>
         {{ assets.outputCss('cssHeader') }}
         {{ assets.outputJs('jsHeader') }} 
         {% block scriptHeader %} {% endblock %}
     </head>
     <body>
+        
         {% block header %} {% endblock %}
+        
         {% block content %}
             {{ content() }}
         {% endblock %}
+        
         {% block footer %} {% endblock %}
+        
         {{ assets.outputCss('cssFooter') }} 
         {{ assets.outputJs('jsFooter') }}
+        
         {% block scriptMainFooter %} {% endblock %} 
         {% block scriptFooter %}  {% endblock %} 
+        
     </body>
 </html>
